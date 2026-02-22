@@ -135,7 +135,8 @@ import AdminSettings from './pages/admin/AdminSettings';
 import AdminLayout from './components/admin/AdminLayout';
 
 // User Layout
-import Layout from './components/layout/Layout';
+// import Layout from './components/layout/Layout';
+ import Layout from './components/Layout/Layout';
 
 // ✅ Theme Selector Component
 import ThemeSelector from './components/ThemeSelector';
