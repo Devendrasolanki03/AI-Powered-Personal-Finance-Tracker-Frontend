@@ -452,7 +452,7 @@ import {
     ResponsiveContainer, Legend, AreaChart, Area
 } from 'recharts';
 import { Calendar, TrendingUp, DollarSign, Loader } from 'lucide-react';
-import Card from '../../components/common/Card';
+import Card from '../../components/Common/Card';
 import api from '../../api/axios';
 import { formatCurrency } from '../../utils/helpers';
 import toast from 'react-hot-toast';
