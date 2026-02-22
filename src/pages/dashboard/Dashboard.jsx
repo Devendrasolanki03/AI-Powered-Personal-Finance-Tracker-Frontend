@@ -384,7 +384,7 @@ import {
 import { getIncomes } from '../../api/income.api';
 import { getExpenses } from '../../api/expense.api';
 import { getAIAdvice } from '../../api/ai.api';
-import Card from '../../components/common/Card';
+import Card from '../../components/Common/Card';
 import { formatCurrency, calculateTotal, groupByCategory } from '../../utils/helpers';
 import { EXPENSE_CATEGORIES } from '../../utils/constants';
 import { useAuth } from '../../context/AuthContext'; // ✅ ADDED
