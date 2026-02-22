@@ -11,7 +11,7 @@ import {
     LogOut,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import ThemeToggle from '../common/ThemeToggle';
+import ThemeToggle from '../Common/ThemeToggle';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
     const { logout } = useAuth();
