@@ -1157,8 +1157,8 @@ import {
 } from 'lucide-react';
 import { getAIAdvice } from '../../api/ai.api';
 import api from '../../api/axios';
-import Card from '../../components/common/Card';
-import Button from '../../components/common/Button';
+import Card from '../../components/Common/Card';
+import Button from '../../components/Common/Button';
 import toast from 'react-hot-toast';
 
 const AIInsights = () => {

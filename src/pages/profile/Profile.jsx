@@ -258,7 +258,7 @@ import { motion } from 'framer-motion';
 import { User, Mail, MapPin, Globe, Save, CreditCard, Smartphone, Building, Lock, Loader, Sparkles } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
-import Card from '../../components/common/Card';
+import Card from '../../components/Common/Card';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
