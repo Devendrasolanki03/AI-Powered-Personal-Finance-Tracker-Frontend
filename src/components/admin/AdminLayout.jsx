@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Bell, LogOut } from 'lucide-react';
 // import AdminSidebar from '../../components/admin/AdminSidebar';
-import AdminSidebar from './AdminSidebar.jsx';
+import AdminSidebar from './Adminsidebar.jsx';
 import toast from 'react-hot-toast';
 
 const AdminLayout = () => {
