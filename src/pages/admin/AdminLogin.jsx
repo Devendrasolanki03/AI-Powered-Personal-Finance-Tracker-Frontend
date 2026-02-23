@@ -143,7 +143,10 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8086/api/admin/auth/login', formData);
+            const response = await axios.post(
+    `${import.meta.env.VITE_API_URL}/api/admin/auth/login`, 
+    formData
+);
             const data = response.data;
 
             // ✅ AuthResponseDTO: { token, message, name, email, role, provider }
