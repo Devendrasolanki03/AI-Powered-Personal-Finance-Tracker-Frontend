@@ -520,7 +520,7 @@ import Button from '../../components/Common/Button';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
 
 const OtpInput = ({ value, onChange, length = 6 }) => {
     const inputs = [];
