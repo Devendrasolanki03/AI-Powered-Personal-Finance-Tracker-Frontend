@@ -116,7 +116,6 @@
 // };
 
 // export default AdminLogin;
-
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -138,10 +137,11 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8086/api/admin/auth/login', formData);
+            // ✅ PEHLE: axios.post('http://localhost:8086/api/admin/auth/login', formData)
+            // ✅ AB: adminAPI.login() — automatically sahi URL use karega
+            const response = await adminAPI.login(formData);
             const data = response.data;
 
-            // ✅ AuthResponseDTO: { token, message, name, email, role, provider }
             localStorage.setItem('admin_token', data.token);
             localStorage.setItem('admin_user', JSON.stringify({
                 email: data.email,
