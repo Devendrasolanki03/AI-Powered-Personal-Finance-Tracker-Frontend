@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 // import { useNavigate, Link } from 'react-router-dom';
 // import { motion } from 'framer-motion';
-// import { Shield, Mail, Lock, ArrowLeft } from 'lucide-react';
+// import { Mail, Lock, ArrowLeft } from 'lucide-react';
 // import toast from 'react-hot-toast';
 // import axios from 'axios';
 
@@ -20,25 +20,27 @@
 
 //         try {
 //             const response = await axios.post('http://localhost:8086/api/admin/auth/login', formData);
+//             const data = response.data;
 
-//             localStorage.setItem('admin_token', response.data.token);
-//             localStorage.setItem('admin_user', JSON.stringify(response.data.user));
+//             // ✅ AuthResponseDTO: { token, message, name, email, role, provider }
+//             // localStorage.setItem('admin_token', data.token);
+//             localStorage.setItem('admin_user', JSON.stringify({
+//                 email: data.email,
+//                 name: data.name,
+//                 role: data.role
+//             }));
 
-//             toast.success('Welcome, Admin!');
+//             toast.success(`Welcome, ${data.name}!`);
 //             navigate('/admin/dashboard');
+
 //         } catch (error) {
-//             // Fallback to demo credentials
-//             if (formData.email === 'admin@financeai.com' && formData.password === 'admin123') {
-//                 localStorage.setItem('admin_token', 'demo_token');
-//                 localStorage.setItem('admin_user', JSON.stringify({
-//                     email: formData.email,
-//                     name: 'Admin User',
-//                     role: 'ADMIN'
-//                 }));
-//                 toast.success('Welcome, Admin!');
-//                 navigate('/admin/dashboard');
+//             const status = error?.response?.status;
+//             if (status === 401) {
+//                 toast.error('Invalid email or password');
+//             } else if (status === 403) {
+//                 toast.error('Access denied. Admin only.');
 //             } else {
-//                 toast.error('Invalid credentials');
+//                 toast.error('Server error. Please try again.');
 //             }
 //         } finally {
 //             setLoading(false);
@@ -74,7 +76,7 @@
 //                                 <input
 //                                     type="email"
 //                                     name="email"
-//                                     placeholder="admin email"
+//                                     placeholder="admin@financeai.com"
 //                                     value={formData.email}
 //                                     onChange={handleChange}
 //                                     required
@@ -107,12 +109,6 @@
 //                             {loading ? 'Authenticating...' : 'Login as Admin'}
 //                         </button>
 //                     </form>
-
-//                     <div className="mt-6 p-4 bg-[#0a0f1e] rounded-lg border border-gray-800">
-//                         <p className="text-sm text-gray-300 font-medium mb-2">Demo Credentials:</p>
-//                         <p className="text-xs text-gray-400">Email: admin@financeai.com</p>
-//                         <p className="text-xs text-gray-400">Password: admin123</p>
-//                     </div>
 //                 </div>
 //             </motion.div>
 //         </div>
@@ -121,13 +117,12 @@
 
 // export default AdminLogin;
 
-
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { adminAPI } from '../../api/adminAPI'; // ✅ adminAPI use karo, axios direct nahi
 
 const AdminLogin = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -143,7 +138,9 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8086/api/admin/auth/login', formData);
+            // ✅ PEHLE: axios.post('http://localhost:8086/api/admin/auth/login', formData)
+            // ✅ AB: adminAPI.login() — automatically sahi URL use karega
+            const response = await adminAPI.login(formData);
             const data = response.data;
 
             // ✅ AuthResponseDTO: { token, message, name, email, role, provider }

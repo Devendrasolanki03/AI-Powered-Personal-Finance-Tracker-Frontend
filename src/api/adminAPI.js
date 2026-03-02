@@ -1,4 +1,3 @@
-
 // import axios from "axios";
 
 // const API_URL = "http://localhost:8086/api/admin";
@@ -53,6 +52,9 @@
 //     unblockUser: (id) =>
 //         axios.put(`${API_URL}/users/${id}/unblock`, {}, getAuthHeaders()),
 
+//     deleteUser: (id) =>
+//         axios.delete(`${API_URL}/users/${id}`, getAuthHeaders()),
+
 //     // ========== AI INSIGHTS ==========
 //     getAllInsights: (page = 0, size = 20, type = '', impact = '') => {
 //         const params = new URLSearchParams();
@@ -99,9 +101,13 @@
 // };
 
 // export default adminAPI;
+
 import axios from "axios";
 
-const API_URL = "http://localhost:8086/api/admin";
+// ✅ Automatically local ya Render URL use karega
+// Local: http://localhost:8086  (from .env)
+// Render: https://your-app.onrender.com  (from Render env variables)
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8086"}/api/admin`;
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem("admin_token");
@@ -134,12 +140,12 @@ export const adminAPI = {
         axios.get(`${API_URL}/stats/expenses/categories`, getAuthHeaders()),
 
     // ========== USERS MANAGEMENT ==========
-    getAllUsers: (page = 0, size = 20, search = '', status = '') => {
+    getAllUsers: (page = 0, size = 20, search = "", status = "") => {
         const params = new URLSearchParams();
-        params.append('page', page);
-        params.append('size', size);
-        if (search) params.append('search', search);
-        if (status) params.append('status', status);
+        params.append("page", page);
+        params.append("size", size);
+        if (search) params.append("search", search);
+        if (status) params.append("status", status);
 
         return axios.get(`${API_URL}/users?${params.toString()}`, getAuthHeaders());
     },
@@ -157,12 +163,12 @@ export const adminAPI = {
         axios.delete(`${API_URL}/users/${id}`, getAuthHeaders()),
 
     // ========== AI INSIGHTS ==========
-    getAllInsights: (page = 0, size = 20, type = '', impact = '') => {
+    getAllInsights: (page = 0, size = 20, type = "", impact = "") => {
         const params = new URLSearchParams();
-        params.append('page', page);
-        params.append('size', size);
-        if (type) params.append('type', type);
-        if (impact) params.append('impact', impact);
+        params.append("page", page);
+        params.append("size", size);
+        if (type) params.append("type", type);
+        if (impact) params.append("impact", impact);
 
         return axios.get(`${API_URL}/insights?${params.toString()}`, getAuthHeaders());
     },
