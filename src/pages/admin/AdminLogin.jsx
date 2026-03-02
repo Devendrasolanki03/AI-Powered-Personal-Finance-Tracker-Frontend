@@ -138,9 +138,7 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            // ✅ PEHLE: axios.post('http://localhost:8086/api/admin/auth/login', formData)
-            // ✅ AB: adminAPI.login() — automatically sahi URL use karega
-            const response = await adminAPI.login(formData);
+            const response = await axios.post('http://localhost:8086/api/admin/auth/login', formData);
             const data = response.data;
 
             // ✅ AuthResponseDTO: { token, message, name, email, role, provider }
